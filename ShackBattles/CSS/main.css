@@ -1,0 +1,216 @@
+﻿body {
+}
+
+#container {
+    padding-top: 90px;
+}
+
+.box-art {
+    width: 200px;
+    margin-top: 15px;
+}
+
+.find-game-image {
+    height: 250px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+#battle-details {
+    display: none;
+}
+
+#gamelist {
+    display: none;
+}
+
+#alert {
+    display: none;
+}
+
+.battle-player {
+    margin-top: 8px;
+    margin-right: 4px;
+}
+
+.footer {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-size: 12px;
+    text-align: center;
+}
+
+#ui-datepicker-div {
+    font-size: 11px;
+}
+
+.add-message {
+    margin-top: -10px;
+    font-size: 12px;
+}
+
+
+
+.tag {
+    padding: 10px;
+    float: left;
+    border: solid 1px #444;
+    margin-left: 5px;
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+    .tag:hover {
+        cursor: pointer;
+    }
+
+.tab {
+    padding: 10px;
+    float: left;
+    border: solid 1px #444;
+    margin-left: 5px;
+    width: 65px;
+    text-align: center;
+    font-size: 12px;
+}
+
+
+    .tab:hover {
+        background-color: #333;
+        cursor: pointer;
+    }
+
+    .tab.selected {
+        background-color: #444;
+    }
+
+#preview {
+    background-color: #222;
+    border: solid 1px #ddd;
+    height: 350px;
+    display: none;
+    color: white;
+    overflow: auto;
+}
+
+.shack-red {
+    color: #ff0000;
+}
+
+.shack-green {
+    color: #8dc63f;
+}
+
+.shack-blue {
+    color: #44aedf;
+}
+
+.shack-yellow {
+    color: #ffde00;
+}
+
+.shack-olive {
+    color: olive;
+}
+
+.shack-lime {
+    color: #c0ffc0;
+}
+
+.shack-orange {
+    color: #f7941c;
+}
+
+.shack-bold {
+    font-weight: bold;
+}
+
+.shack-underline {
+    text-decoration: underline;
+}
+
+.shack-italics {
+    font-style: italic;
+}
+
+.shack-pink {
+    color: #f49ac1;
+}
+
+.shack-quotes {
+    font-family: serif;
+    font-size: 110%;
+}
+
+.shack-sample {
+    font-size: 80%;
+    line-height: 10px;
+}
+
+.shack-strike {
+    text-decoration: line-through;
+}
+
+.shack-spoiler {
+    cursor: help;
+    color: #383838;
+    background-color: #383838;
+}
+
+.shack-code {
+    display: block;
+    font-family: monospace;
+    border-left: 1px solid #666;
+    padding: 3px 0 3px 10px;
+    margin: 5px 0 5px 10px;
+}
+
+.sharelink {
+    color: #EEE;
+    background-color: #444;
+    padding: 4px;
+}
+
+    .sharelink:hover, .sharelink:active, .sharelink:visited {
+        color: #EEE;
+        background-color: #444;
+        text-decoration: none;
+    }
+
+
+/* bootstrap overrides */
+
+.navbar-inverse {
+    background-color: #524A60 !important;
+}
+
+    .navbar-inverse a:hover {
+        color: #5DA3AF !important;
+    }
+
+
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+        background-color: #5DA3AF !important;
+        color: white !important;
+    }
+
+.panel-primary > .panel-heading {
+    background-color: #524A60 !important;
+}
+
+.panel-primary {
+    border-color: #524A60 !important;
+}
+
+a {
+    color: #DDD !important;
+}
+
+    a:hover {
+        color: #FFF !important;
+    }
+
+.panel-primary > .panel-heading {
+    border-color: #524A60 !important;
+}

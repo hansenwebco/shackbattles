@@ -1,0 +1,75 @@
+﻿/* CSS used here will be applied after bootstrap.css */
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
+}
+
+.login-logo {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.panel-default {
+    opacity: 0.9;
+    margin-top: 30px;
+}
+
+.form-group.last {
+    margin-bottom: 0px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px white inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: #333;
+}
+
+    input:-webkit-autofill:focus {
+        -webkit-box-shadow: /*your box-shadow*/,0 0 0 50px white inset;
+        -webkit-text-fill-color: #333;
+    }
+
+
+#login-logo {
+    padding: 10px;
+    margin: auto;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+#gameInfo {
+    margin-top:100px;
+    padding:20px;
+    background:white;
+    width:auto;
+    opacity: 0.9;
+    bottom:120px;
+    position:absolute;
+    font-size:14px;
+}
+
+#gameInfo a {
+    font-size:10px;
+}
+#gameTitle { 
+    font-weight:bold;
+    font-size:16px;
+}
+
+.btn-primary {
+    background-color:#65A9B4;
+    border-color:#65A9B4;
+}
+
+a {
+    color:#65A9B4;
+}
