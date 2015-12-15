@@ -7,6 +7,7 @@ using System.Web.SessionState;
 using System.Web.Routing;
 using System.Web.Http.WebHost;
 using System.Web.Http;
+using System.Web.Optimization;
 
 namespace ShackBattles
 {
@@ -21,23 +22,21 @@ namespace ShackBattles
             routes.MapPageRoute("ViewGameRoute","game/{id}/{GameSystem}/{gamename}","~/view-game/default.aspx");
             routes.MapPageRoute("ViewBattle", "view-battle/{BattleGUID}", "~/view-battle/default.aspx");
             routes.MapPageRoute("ViewPlayer", "player/{userKey}/{playerName}", "~/players/default.aspx");
- 
            
             routes.MapHttpRoute(
             name: "Default2Api",
                    routeTemplate: "{controller}/{action}/{id}",
                    defaults: new { id = RouteParameter.Optional }
                    );
-
         }
 
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
-          
 
             RegisterRoutes(RouteTable.Routes);
         }
