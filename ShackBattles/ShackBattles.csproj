@@ -112,6 +112,7 @@
     <Content Include="CSS\main.css" />
     <Content Include="Default.aspx" />
     <Content Include="external\ShackBattlesPost.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="find-battle\Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\anvil.png" />
