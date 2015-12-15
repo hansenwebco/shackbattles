@@ -13,6 +13,7 @@ namespace ShackBattles.manage_battle
     {
         protected string _battleGUID = string.Empty;
         protected int _userKey = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             UserSession user = Helper.GetUserSession();
@@ -48,7 +49,6 @@ namespace ShackBattles.manage_battle
                         {
                             if (battleInfo.CreatorKey != user.userKey) // shoudl not be editing
                                 Response.Redirect("~/home", true);
-
                         }
 
                         DropDownListSystem.Items.FindByValue(battleInfo.GameSystemKey.ToString()).Selected = true;

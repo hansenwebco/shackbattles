@@ -10,7 +10,6 @@ namespace ShackBattles.Classes
 {
     public static class Helper
     {
-       
         static Random rnd = new Random((int)System.DateTime.Now.Ticks);
 
         public static string GetBaseAPIURl()
@@ -113,7 +112,6 @@ namespace ShackBattles.Classes
                 return days.ToString() + "d " + (hours - days * 24) + "h " + started;
             else
                 return weeks.ToString() + "w " + (days - (weeks * 7)) + "d " + started;
-
         }
     }
 }

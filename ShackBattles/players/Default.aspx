@@ -1,9 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Main.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShackBattles.players.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderHead" runat="server">
-
     <script>
         $(function () {
-           
             var bio = $("#bio").text();
             if (bio != null && bio.length > 0) {
                 $("#bio").html(formatText(bio));
@@ -13,13 +11,12 @@
             }
         });
     </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderFooter" runat="server">
-    
-    <h1>Player Profile for <asp:Literal ID="LiteralProfileName" runat="server"></asp:Literal></h1>
+    <h1>Player Profile for
+        <asp:Literal ID="LiteralProfileName" runat="server"></asp:Literal></h1>
     <br />
     <table class="table table-bordered table-striped">
         <tr>
@@ -55,14 +52,10 @@
                 <br />
                 <b>Profile/Bio:</b>
                 <hr />
-               <div id="bio"><asp:Literal ID="LabelBio" runat="server"></asp:Literal></div>
-                <br/>
+                <div id="bio">
+                    <asp:Literal ID="LabelBio" runat="server"></asp:Literal></div>
+                <br />
             </td>
-
         </tr>
-       
-
     </table>
-
-
 </asp:Content>

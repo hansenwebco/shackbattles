@@ -1,5 +1,4 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="ShackBattles.MasterPages.Main" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
@@ -28,7 +27,6 @@
                     return false;
                 }
             });
-
             $("#Search").typeahead({
                 source: function (query, process) {
                     return $.get('/api/ShackBattlesSearch', { query: query }, function (data) {

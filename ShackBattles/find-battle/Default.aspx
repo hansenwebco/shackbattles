@@ -1,20 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Main.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShackBattles.find_battle.Default" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderHead" runat="server">
     <script>
         $(function () {
             setMenu("menu-find-battle");
             $("[class^='table']").stacktable();
         });
-       
        var userKey = <%=_userKey%>;
         $(function () {
             $("input[data-id]").click(function () {
                 manageUserBattle($(this).attr('data-id') ,userKey);
             });
         });
-
-       
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
@@ -58,11 +54,7 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
     <asp:Repeater ID="RepeaterGames" runat="server">
         <ItemTemplate>
             <div class="col-sm-6 col-md-3 find-game-box text-center">

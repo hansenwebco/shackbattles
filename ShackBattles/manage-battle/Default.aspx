@@ -9,11 +9,9 @@
         $(function () {
 
             setMenu("menu-create-battle");
-            //$("#battle-details").slideDown();  // debug
 
             $("#<%=TextBoxDate.ClientID%>").datepicker({ showButtonPanel: true, minDate: -0 });
             $("#<%=TextBoxDate.ClientID%>").mask("99/99/9999", { placeholder: "_" });
-
 
             // bind system drop down
             var ddlSystems = $("#<%=DropDownListSystem.ClientID%>");
@@ -25,7 +23,6 @@
 
             $(ddlSystems).change(function () {
                 PopulateGamesDropDown();
-             
             });
 
             var ddlGames = $("#<%=DropDownListGames.ClientID%>");
@@ -45,7 +42,6 @@
                 var title = $("#<%=TextBoxTitle.ClientID%>").val();
                 var details = $("#<%=TextBoxDetails.ClientID%>").val();
                 var battleGUID = '<%=_battleGUID%>';
-
 
                 if (ValidateForm()) {
 

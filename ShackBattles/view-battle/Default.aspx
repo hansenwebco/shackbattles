@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/Main.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ShackBattles.view_battle.Default" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderHead" runat="server">
     <script>
         var userKey = <%=_userKey%>;
@@ -30,8 +29,7 @@
             <h1>
                 <asp:Literal ID="LiteralBattleTitle" runat="server"></asp:Literal></h1>
             <h4>
-                <asp:Literal ID="LiteralBattleDateTime" runat="server"></asp:Literal>
-                EST</h4>
+                <asp:Literal ID="LiteralBattleDateTime" runat="server"></asp:Literal>EST</h4>
             <hr />
             <h5>Share Battle: <a class="sharelink" href="#">
                 <asp:Literal ID="LiteralBattleLink" runat="server"></asp:Literal></a></h5>
@@ -39,7 +37,6 @@
             <p>
                 <asp:Label ID="LiteralBattleDetails" runat="server"></asp:Label>
             </p>
-
             <hr />
             <h2>Enlisted Players</h2>
             <asp:Repeater ID="RepeaterEnlisted" runat="server">

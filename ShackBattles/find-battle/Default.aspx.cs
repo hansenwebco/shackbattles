@@ -15,6 +15,7 @@ namespace ShackBattles.find_battle
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             UserSession us = Helper.GetUserSession();
             _userKey = us.userKey;
 
@@ -26,8 +27,6 @@ namespace ShackBattles.find_battle
                 RepeaterGames.DataSource = db.GetAllGames();
                 RepeaterGames.DataBind();
             }
-
-
         }
     }
 }
