@@ -49,8 +49,6 @@
     font-size: 12px;
 }
 
-
-
 .tag {
     padding: 10px;
     float: left;
@@ -74,8 +72,6 @@
     text-align: center;
     font-size: 12px;
 }
-
-
     .tab:hover {
         background-color: #333;
         cursor: pointer;
@@ -178,9 +174,7 @@
         text-decoration: none;
     }
 
-
 /* bootstrap overrides */
-
 .navbar-inverse {
     background-color: #524A60 !important;
 }
@@ -206,7 +200,6 @@
 a {
     color: #DDD !important;
 }
-
     a:hover {
         color: #FFF !important;
     }

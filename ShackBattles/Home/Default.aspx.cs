@@ -22,16 +22,18 @@ namespace ShackBattles.Home
             {
                 RepeaterFollowedGames.DataSource = db.GetUserFollowedGames(us.userKey);
                 RepeaterFollowedGames.DataBind();
-                RepeaterFollowedGames.Controls[RepeaterFollowedGames.Controls.Count - 1].FindControl("LabelEmptyFollowing").Visible = RepeaterFollowedGames.Items.Count == 0;
+                LitearlEmptyFollowing.Visible = RepeaterFollowedGames.Items.Count == 0;
+                RepeaterFollowedGames.Visible = RepeaterFollowedGames.Items.Count != 0;
 
                 RepeaterUserRegisteredBattles.DataSource = db.GetUpcomingUserBattles(us.userKey);
                 RepeaterUserRegisteredBattles.DataBind();
-                RepeaterUserRegisteredBattles.Controls[RepeaterUserRegisteredBattles.Controls.Count - 1].FindControl("LabelRegisteredBattles").Visible = RepeaterUserRegisteredBattles.Items.Count == 0;
+                RepeaterUserRegisteredBattles.Visible = RepeaterUserRegisteredBattles.Items.Count != 0;
+                LiteralRegisteredBattles.Visible = RepeaterUserRegisteredBattles.Items.Count == 0;
                 
-
                 RepeaterUpcomingBattlesYouFollow.DataSource = db.GetUserUpcomingFollowedBattles(us.userKey);
                 RepeaterUpcomingBattlesYouFollow.DataBind();
-                RepeaterUpcomingBattlesYouFollow.Controls[RepeaterUpcomingBattlesYouFollow.Controls.Count - 1].FindControl("LabelUpcomingBattlesYouFollow").Visible = RepeaterUpcomingBattlesYouFollow.Items.Count == 0;
+                RepeaterUpcomingBattlesYouFollow.Visible = RepeaterUpcomingBattlesYouFollow.Items.Count != 0;
+                LitearlUpcomingBattlesYouFollow.Visible = RepeaterUpcomingBattlesYouFollow.Items.Count == 0;
                 
                
             }

@@ -22,6 +22,15 @@ namespace ShackBattles.Home {
         protected global::System.Web.UI.WebControls.Repeater RepeaterUpcomingBattlesYouFollow;
         
         /// <summary>
+        /// LitearlUpcomingBattlesYouFollow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitearlUpcomingBattlesYouFollow;
+        
+        /// <summary>
         /// RepeaterUserRegisteredBattles control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace ShackBattles.Home {
         protected global::System.Web.UI.WebControls.Repeater RepeaterUserRegisteredBattles;
         
         /// <summary>
+        /// LiteralRegisteredBattles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LiteralRegisteredBattles;
+        
+        /// <summary>
         /// RepeaterFollowedGames control.
         /// </summary>
         /// <remarks>
@@ -38,5 +56,14 @@ namespace ShackBattles.Home {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater RepeaterFollowedGames;
+        
+        /// <summary>
+        /// LitearlEmptyFollowing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitearlEmptyFollowing;
     }
 }
