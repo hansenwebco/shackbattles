@@ -18,5 +18,13 @@ public class BundleConfig
             "~/CSS/main.css"
             ));
 
+        bundles.Add(new ScriptBundle("~/bundles/login").Include(
+          "~/JS/backgrounds.js"
+          ));
+
+        bundles.Add(new StyleBundle("~/bundles/css-login").Include(
+      "~/CSS/login.css"
+      ));
+
     }
 }

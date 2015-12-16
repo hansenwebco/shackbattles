@@ -10,9 +10,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous" />
-    <link href="CSS/login.css" rel="stylesheet" />
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="JS/backgrounds.js"></script>
+    
+    <asp:PlaceHolder runat="server">
+         <%: System.Web.Optimization.Styles.Render("~/bundles/css-login") %>
+        <%: System.Web.Optimization.Scripts.Render("~/bundles/login") %>
+    </asp:PlaceHolder>
+    
+    
     <script>
         var current = 0;
         $(function () {
