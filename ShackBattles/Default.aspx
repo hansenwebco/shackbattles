@@ -14,13 +14,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="JS/backgrounds.js"></script>
     <script>
+        var current = 0;
         $(function () {
             SetBackground();
         });
         function SetBackground()
         {
-            var back = Math.floor(Math.random() * (backgrounds.length-1)) + 1
-            console.log(back);
+            var back = Math.floor(Math.random() * (backgrounds.length - 1)) + 1
+            if (back == current) {
+                SetBackground();
+                return;
+            }
+            else
+                current = back;
+
             $("#gameTitle").text(backgrounds[back].gameTitle);
             $("#gameDev").text(backgrounds[back].gameDev);
             $("#gameYear").text(backgrounds[back].gameYear);

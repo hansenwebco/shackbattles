@@ -119,6 +119,12 @@
     <Content Include="Images\anvilnew.png" />
     <Content Include="Images\back10.jpg" />
     <Content Include="Images\back11.jpg" />
+    <Content Include="Images\back12.jpg" />
+    <Content Include="Images\back13.jpg" />
+    <Content Include="Images\back14.jpg" />
+    <Content Include="Images\back15.jpg" />
+    <Content Include="Images\back16.jpg" />
+    <Content Include="Images\back17.jpg" />
     <Content Include="Images\back3.jpg" />
     <Content Include="Home\Default.aspx" />
     <Content Include="Images\back7.jpg" />
