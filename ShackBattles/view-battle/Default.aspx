@@ -26,8 +26,10 @@
             <% if (_userKey == _creatorKey){  %>
             <a href="<%=ResolveUrl("~")%>edit-battle/<%=_battleGUID %>" class="btn btn-default">Edit Your Battle</a>
             <br /><br />
+            <asp:Button runat="server" OnClick="DeleteBattle_Click" OnClientClick="return confirm('Are you sure you want to delete your battle?')" ID="DeleteBattle" Text="Delete Your Battle" CssClass="btn btn-danger" />
             <% } %>
-            <asp:Button runat="server" OnClick="DeleteBattle_Click" OnClientClick="return confirm('Are you sure you want to delete your battle?')" ID="DeleteBattle" Visible="<%#_userKey == _creatorKey %>" Text="Delete Your Battle" CssClass="btn btn-danger" />
+
+            
         </div>
         <div class="col-md-9">
             <h1>
