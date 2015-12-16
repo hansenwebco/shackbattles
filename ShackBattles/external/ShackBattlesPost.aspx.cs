@@ -28,7 +28,7 @@ namespace ShackBattles.external
                     foreach (var battle in upcoming)
                     {
                         sb.AppendLine("b[b{" + battle.Title + "}b]b");
-                        sb.AppendLine("Playing y{" + battle.GameName + "}y on the y{" + battle.GameSystemName + "}y at b[" + battle.BattleDate.ToLocalTime().ToString() + "]b");
+                        sb.AppendLine("Playing y{" + battle.GameName + "}y on the y{" + battle.GameSystemName + "}y at b[" + battle.BattleDate.ToLocalTime().ToString("MM/dd/yyyy h:mm") + " EST]b");
                         sb.AppendLine("Created by g{" + battle.CreatorName + "}g");
                         sb.AppendLine("Details and Enlistment : " + baseURL + "view-battle/" + battle.BattleGUID + "/");
                         sb.AppendLine();
