@@ -28,13 +28,13 @@ namespace ShackBattles.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Battle> Battles { get; set; }
         public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<GameSystem> GameSystems { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserBattle> UserBattles { get; set; }
         public virtual DbSet<UserFollow> UserFollows { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Battle> Battles { get; set; }
     
         public virtual ObjectResult<GetGameUpcomingBattles_Result> GetGameUpcomingBattles(Nullable<int> gameKey, Nullable<int> userKey)
         {
@@ -58,6 +58,11 @@ namespace ShackBattles.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUpcomingBattles_Result>("GetUpcomingBattles", userKeyParameter);
         }
     
+        public virtual ObjectResult<GetUpcomingBattlesAllUsers_Result> GetUpcomingBattlesAllUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUpcomingBattlesAllUsers_Result>("GetUpcomingBattlesAllUsers");
+        }
+    
         public virtual ObjectResult<GetUpcomingUserBattles_Result> GetUpcomingUserBattles(Nullable<int> userKey)
         {
             var userKeyParameter = userKey.HasValue ?
@@ -74,11 +79,6 @@ namespace ShackBattles.Data
                 new ObjectParameter("UserKey", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUserUpcomingFollowedBattles_Result>("GetUserUpcomingFollowedBattles", userKeyParameter);
-        }
-    
-        public virtual ObjectResult<GetUpcomingBattlesAllUsers_Result> GetUpcomingBattlesAllUsers()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUpcomingBattlesAllUsers_Result>("GetUpcomingBattlesAllUsers");
         }
     }
 }

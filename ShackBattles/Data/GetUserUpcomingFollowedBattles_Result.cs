@@ -22,6 +22,7 @@ namespace ShackBattles.Data
         public System.DateTime DateCreated { get; set; }
         public Nullable<System.DateTime> DateUpdated { get; set; }
         public string BattleGUID { get; set; }
+        public bool Deleted { get; set; }
         public Nullable<int> Joined { get; set; }
         public Nullable<int> Registered { get; set; }
         public string CreatorName { get; set; }

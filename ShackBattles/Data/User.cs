@@ -17,9 +17,9 @@ namespace ShackBattles.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Battles = new HashSet<Battle>();
             this.UserBattles = new HashSet<UserBattle>();
             this.UserFollows = new HashSet<UserFollow>();
+            this.Battles = new HashSet<Battle>();
         }
     
         public int UserKey { get; set; }
@@ -34,10 +34,10 @@ namespace ShackBattles.Data
         public string Bio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Battle> Battles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBattle> UserBattles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFollow> UserFollows { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Battle> Battles { get; set; }
     }
 }

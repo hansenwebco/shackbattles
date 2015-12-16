@@ -185,6 +185,7 @@ namespace ShackBattles.api
                         b = new Battle();
                         b.BattleGUID = Guid.NewGuid().ToString();
                         b.DateCreated = DateTime.UtcNow;
+                        b.Deleted = false;
                         db.Battles.Add(b);
                     }
 

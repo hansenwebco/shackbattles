@@ -14,7 +14,6 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
-
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">

@@ -3,6 +3,7 @@ using ShackBattles.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -49,6 +50,32 @@ namespace ShackBattles.view_battle
 
                 RepeaterEnlisted.DataSource = players;
                 RepeaterEnlisted.DataBind();
+            }
+        }
+
+        protected void DeleteBattle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string BattleGUID = (string)Page.RouteData.Values["BattleGUID"];
+                using (SBEntities db = new SBEntities())
+                {
+                    Battle b = db.Battles.Where(w => w.BattleGUID == BattleGUID).FirstOrDefault();
+                    if (b != null)
+                    {
+                        b.Deleted = true;
+                        db.SaveChanges();
+                        User u = db.Users.Where(w => w.UserKey == b.CreatorKey).FirstOrDefault();
+                        StringBuilder sb = new StringBuilder();
+                        sb.AppendLine("Your ShackBattle titled " + b.Title + " was deleted succesfully.");
+                        ShackNewsHelper.SendShackMessage(u.Username, "Your ShackBattle was Deleted", sb.ToString());
+                        Response.Redirect("~/home", true);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                // We are just going to swallow this for now.
             }
         }
     }

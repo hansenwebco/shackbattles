@@ -18,7 +18,7 @@ namespace ShackBattles.Data
         public int UsersKey { get; set; }
         public int BattleKey { get; set; }
     
-        public virtual Battle Battle { get; set; }
         public virtual User User { get; set; }
+        public virtual Battle Battle { get; set; }
     }
 }

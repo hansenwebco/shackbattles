@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f92019b812794981b6ada977714709cb" Name="Diagram1" ZoomLevel="91">
-        <EntityTypeShape EntityType="ShackBattlesModel.Battle" Width="1.5" PointX="3" PointY="4.5" />
         <EntityTypeShape EntityType="ShackBattlesModel.Game" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ShackBattlesModel.GameSystem" Width="1.5" PointX="1.5" PointY="9.75" />
         <EntityTypeShape EntityType="ShackBattlesModel.sysdiagram" Width="1.5" PointX="3.75" PointY="8.75" />
         <EntityTypeShape EntityType="ShackBattlesModel.UserBattle" Width="1.5" PointX="5.25" PointY="2.25" />
         <EntityTypeShape EntityType="ShackBattlesModel.UserFollow" Width="1.5" PointX="6" PointY="5.125" />
-        <AssociationConnector Association="ShackBattlesModel.FK_Battles_Games" />
-        <AssociationConnector Association="ShackBattlesModel.FK_UserBattles_Battles" />
         <AssociationConnector Association="ShackBattlesModel.FK_Games_GameSystems" />
         <AssociationConnector Association="ShackBattlesModel.FK_UserFollows_Games" />
         <EntityTypeShape EntityType="ShackBattlesModel.User" Width="1.5" PointX="0.75" PointY="5.25" />
-        <AssociationConnector Association="ShackBattlesModel.FK_Battles_Users" />
         <AssociationConnector Association="ShackBattlesModel.FK_UserBattles_Users" />
         <AssociationConnector Association="ShackBattlesModel.FK_UserFollows_Users" />
+        <EntityTypeShape EntityType="ShackBattlesModel.Battle" Width="1.5" PointX="3" PointY="3" />
+        <AssociationConnector Association="ShackBattlesModel.FK_Battles_Games" />
+        <AssociationConnector Association="ShackBattlesModel.FK_Battles_Users" />
+        <AssociationConnector Association="ShackBattlesModel.FK_UserBattles_Battles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

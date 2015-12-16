@@ -29,10 +29,11 @@ namespace ShackBattles.Data
         public System.DateTime DateCreated { get; set; }
         public Nullable<System.DateTime> DateUpdated { get; set; }
         public string BattleGUID { get; set; }
+        public bool Deleted { get; set; }
     
         public virtual Game Game { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBattle> UserBattles { get; set; }
-        public virtual User User { get; set; }
     }
 }

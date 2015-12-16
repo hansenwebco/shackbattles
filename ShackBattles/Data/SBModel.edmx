@@ -18,6 +18,7 @@
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="DateUpdated" Type="datetime" />
           <Property Name="BattleGUID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Games">
           <Key>
@@ -221,24 +222,11 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ShackBattlesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SBEntities" annotation:LazyLoadingEnabled="false">
-          <FunctionImport Name="GetGameUpcomingBattles" ReturnType="Collection(ShackBattlesModel.GetGameUpcomingBattles_Result)">
-            <Parameter Name="GameKey" Mode="In" Type="Int32" />
-            <Parameter Name="UserKey" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="Battles" EntityType="ShackBattlesModel.Battle" />
           <EntitySet Name="Games" EntityType="ShackBattlesModel.Game" />
           <EntitySet Name="GameSystems" EntityType="ShackBattlesModel.GameSystem" />
           <EntitySet Name="sysdiagrams" EntityType="ShackBattlesModel.sysdiagram" />
           <EntitySet Name="UserBattles" EntityType="ShackBattlesModel.UserBattle" />
           <EntitySet Name="UserFollows" EntityType="ShackBattlesModel.UserFollow" />
-          <AssociationSet Name="FK_Battles_Games" Association="ShackBattlesModel.FK_Battles_Games">
-            <End Role="Game" EntitySet="Games" />
-            <End Role="Battle" EntitySet="Battles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserBattles_Battles" Association="ShackBattlesModel.FK_UserBattles_Battles">
-            <End Role="Battle" EntitySet="Battles" />
-            <End Role="UserBattle" EntitySet="UserBattles" />
-          </AssociationSet>
           <AssociationSet Name="FK_Games_GameSystems" Association="ShackBattlesModel.FK_Games_GameSystems">
             <End Role="GameSystem" EntitySet="GameSystems" />
             <End Role="Game" EntitySet="Games" />
@@ -247,20 +235,7 @@
             <End Role="Game" EntitySet="Games" />
             <End Role="UserFollow" EntitySet="UserFollows" />
           </AssociationSet>
-          <FunctionImport Name="GetUpcomingBattles" ReturnType="Collection(ShackBattlesModel.GetUpcomingBattles_Result)">
-          <Parameter Name="UserKey" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetUpcomingUserBattles" ReturnType="Collection(ShackBattlesModel.GetUpcomingUserBattles_Result)">
-          <Parameter Name="UserKey" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetUserUpcomingFollowedBattles" ReturnType="Collection(ShackBattlesModel.GetUserUpcomingFollowedBattles_Result)">
-          <Parameter Name="UserKey" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="Users" EntityType="ShackBattlesModel.User" />
-          <AssociationSet Name="FK_Battles_Users" Association="ShackBattlesModel.FK_Battles_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Battle" EntitySet="Battles" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserBattles_Users" Association="ShackBattlesModel.FK_UserBattles_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="UserBattle" EntitySet="UserBattles" />
@@ -269,33 +244,34 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserFollow" EntitySet="UserFollows" />
           </AssociationSet>
+          <EntitySet Name="Battles" EntityType="ShackBattlesModel.Battle" />
+          <AssociationSet Name="FK_Battles_Games" Association="ShackBattlesModel.FK_Battles_Games">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Battle" EntitySet="Battles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Battles_Users" Association="ShackBattlesModel.FK_Battles_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Battle" EntitySet="Battles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserBattles_Battles" Association="ShackBattlesModel.FK_UserBattles_Battles">
+            <End Role="Battle" EntitySet="Battles" />
+            <End Role="UserBattle" EntitySet="UserBattles" />
+          </AssociationSet>
+          <FunctionImport Name="GetGameUpcomingBattles" ReturnType="Collection(ShackBattlesModel.GetGameUpcomingBattles_Result)">
+            <Parameter Name="GameKey" Mode="In" Type="Int32" />
+            <Parameter Name="UserKey" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUpcomingBattles" ReturnType="Collection(ShackBattlesModel.GetUpcomingBattles_Result)">
+            <Parameter Name="UserKey" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="GetUpcomingBattlesAllUsers" ReturnType="Collection(ShackBattlesModel.GetUpcomingBattlesAllUsers_Result)" />
+          <FunctionImport Name="GetUpcomingUserBattles" ReturnType="Collection(ShackBattlesModel.GetUpcomingUserBattles_Result)">
+            <Parameter Name="UserKey" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserUpcomingFollowedBattles" ReturnType="Collection(ShackBattlesModel.GetUserUpcomingFollowedBattles_Result)">
+            <Parameter Name="UserKey" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
-        <ComplexType Name="GetGameUpcomingBattles_Result">
-          <Property Type="String" Name="Username" Nullable="false" MaxLength="75" />
-          <Property Type="DateTime" Name="BattleDate" Nullable="false" Precision="23" />
-          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="BattleGUID" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="Joined" Nullable="true" />
-          <Property Type="Int32" Name="Registered" Nullable="true" />
-        </ComplexType>
-        <EntityType Name="Battle">
-          <Key>
-            <PropertyRef Name="BattleKey" />
-          </Key>
-          <Property Name="BattleKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="BattleDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="GameKey" Type="Int32" Nullable="false" />
-          <Property Name="CreatorKey" Type="Int32" Nullable="false" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateUpdated" Type="DateTime" Precision="3" />
-          <Property Name="BattleGUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Game" Relationship="ShackBattlesModel.FK_Battles_Games" FromRole="Battle" ToRole="Game" />
-          <NavigationProperty Name="UserBattles" Relationship="ShackBattlesModel.FK_UserBattles_Battles" FromRole="Battle" ToRole="UserBattle" />
-          <NavigationProperty Name="User" Relationship="ShackBattlesModel.FK_Battles_Users" FromRole="Battle" ToRole="User" />
-        </EntityType>
         <EntityType Name="Game">
           <Key>
             <PropertyRef Name="GameKey" />
@@ -307,9 +283,9 @@
           <Property Name="CoverImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="OverView" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="GamesDbId" Type="Int32" />
-          <NavigationProperty Name="Battles" Relationship="ShackBattlesModel.FK_Battles_Games" FromRole="Game" ToRole="Battle" />
           <NavigationProperty Name="GameSystem" Relationship="ShackBattlesModel.FK_Games_GameSystems" FromRole="Game" ToRole="GameSystem" />
           <NavigationProperty Name="UserFollows" Relationship="ShackBattlesModel.FK_UserFollows_Games" FromRole="Game" ToRole="UserFollow" />
+          <NavigationProperty Name="Battles" Relationship="ShackBattlesModel.FK_Battles_Games" FromRole="Game" ToRole="Battle" />
         </EntityType>
         <EntityType Name="GameSystem">
           <Key>
@@ -337,8 +313,8 @@
           <Property Name="UserBattlesKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UsersKey" Type="Int32" Nullable="false" />
           <Property Name="BattleKey" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Battle" Relationship="ShackBattlesModel.FK_UserBattles_Battles" FromRole="UserBattle" ToRole="Battle" />
           <NavigationProperty Name="User" Relationship="ShackBattlesModel.FK_UserBattles_Users" FromRole="UserBattle" ToRole="User" />
+          <NavigationProperty Name="Battle" Relationship="ShackBattlesModel.FK_UserBattles_Battles" FromRole="UserBattle" ToRole="Battle" />
         </EntityType>
         <EntityType Name="UserFollow">
           <Key>
@@ -351,30 +327,6 @@
           <NavigationProperty Name="Game" Relationship="ShackBattlesModel.FK_UserFollows_Games" FromRole="UserFollow" ToRole="Game" />
           <NavigationProperty Name="User" Relationship="ShackBattlesModel.FK_UserFollows_Users" FromRole="UserFollow" ToRole="User" />
         </EntityType>
-        <Association Name="FK_Battles_Games">
-          <End Type="ShackBattlesModel.Game" Role="Game" Multiplicity="1" />
-          <End Type="ShackBattlesModel.Battle" Role="Battle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Game">
-              <PropertyRef Name="GameKey" />
-            </Principal>
-            <Dependent Role="Battle">
-              <PropertyRef Name="GameKey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserBattles_Battles">
-          <End Type="ShackBattlesModel.Battle" Role="Battle" Multiplicity="1" />
-          <End Type="ShackBattlesModel.UserBattle" Role="UserBattle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Battle">
-              <PropertyRef Name="BattleKey" />
-            </Principal>
-            <Dependent Role="UserBattle">
-              <PropertyRef Name="BattleKey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Games_GameSystems">
           <End Type="ShackBattlesModel.GameSystem" Role="GameSystem" Multiplicity="1" />
           <End Type="ShackBattlesModel.Game" Role="Game" Multiplicity="*" />
@@ -399,6 +351,110 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserKey" />
+          </Key>
+          <Property Name="UserKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="LastLogin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GamerTag" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PSNID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BattleNet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SteamAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OriginAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserBattles" Relationship="ShackBattlesModel.FK_UserBattles_Users" FromRole="User" ToRole="UserBattle" />
+          <NavigationProperty Name="UserFollows" Relationship="ShackBattlesModel.FK_UserFollows_Users" FromRole="User" ToRole="UserFollow" />
+          <NavigationProperty Name="Battles" Relationship="ShackBattlesModel.FK_Battles_Users" FromRole="User" ToRole="Battle" />
+        </EntityType>
+        <Association Name="FK_UserBattles_Users">
+          <End Type="ShackBattlesModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShackBattlesModel.UserBattle" Role="UserBattle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserKey" />
+            </Principal>
+            <Dependent Role="UserBattle">
+              <PropertyRef Name="UsersKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserFollows_Users">
+          <End Type="ShackBattlesModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShackBattlesModel.UserFollow" Role="UserFollow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserKey" />
+            </Principal>
+            <Dependent Role="UserFollow">
+              <PropertyRef Name="UserKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Battle">
+          <Key>
+            <PropertyRef Name="BattleKey" />
+          </Key>
+          <Property Name="BattleKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Details" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BattleDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GameKey" Type="Int32" Nullable="false" />
+          <Property Name="CreatorKey" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateUpdated" Type="DateTime" Precision="3" />
+          <Property Name="BattleGUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="ShackBattlesModel.FK_Battles_Games" FromRole="Battle" ToRole="Game" />
+          <NavigationProperty Name="User" Relationship="ShackBattlesModel.FK_Battles_Users" FromRole="Battle" ToRole="User" />
+          <NavigationProperty Name="UserBattles" Relationship="ShackBattlesModel.FK_UserBattles_Battles" FromRole="Battle" ToRole="UserBattle" />
+        </EntityType>
+        <Association Name="FK_Battles_Games">
+          <End Type="ShackBattlesModel.Game" Role="Game" Multiplicity="1" />
+          <End Type="ShackBattlesModel.Battle" Role="Battle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameKey" />
+            </Principal>
+            <Dependent Role="Battle">
+              <PropertyRef Name="GameKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Battles_Users">
+          <End Type="ShackBattlesModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShackBattlesModel.Battle" Role="Battle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserKey" />
+            </Principal>
+            <Dependent Role="Battle">
+              <PropertyRef Name="CreatorKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserBattles_Battles">
+          <End Type="ShackBattlesModel.Battle" Role="Battle" Multiplicity="1" />
+          <End Type="ShackBattlesModel.UserBattle" Role="UserBattle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Battle">
+              <PropertyRef Name="BattleKey" />
+            </Principal>
+            <Dependent Role="UserBattle">
+              <PropertyRef Name="BattleKey" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetGameUpcomingBattles_Result">
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="75" />
+          <Property Type="DateTime" Name="BattleDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="BattleGUID" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Joined" Nullable="true" />
+          <Property Type="Int32" Name="Registered" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="GetUpcomingBattles_Result">
           <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="BattleGUID" Nullable="false" MaxLength="50" />
@@ -411,6 +467,19 @@
           <Property Type="Int32" Name="CreatorKey" Nullable="false" />
           <Property Type="Int32" Name="Registered" Nullable="true" />
           <Property Type="Int32" Name="Joined" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetUpcomingBattlesAllUsers_Result">
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="BattleGUID" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="BattleKey" Nullable="false" />
+          <Property Type="String" Name="CreatorName" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="GameName" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="GameSystemName" Nullable="false" MaxLength="75" />
+          <Property Type="Int32" Name="GameKey" Nullable="false" />
+          <Property Type="DateTime" Name="BattleDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="CreatorKey" Nullable="false" />
+          <Property Type="String" Name="Details" Nullable="false" />
+          <Property Type="Int32" Name="Registered" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetUpcomingUserBattles_Result">
           <Property Type="Int32" Name="BattleKey" Nullable="false" />
@@ -438,78 +507,12 @@
           <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="DateUpdated" Nullable="true" Precision="23" />
           <Property Type="String" Name="BattleGUID" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Deleted" Nullable="false" />
           <Property Type="Int32" Name="Joined" Nullable="true" />
           <Property Type="Int32" Name="Registered" Nullable="true" />
           <Property Type="String" Name="CreatorName" Nullable="false" MaxLength="75" />
           <Property Type="String" Name="GameName" Nullable="false" MaxLength="75" />
           <Property Type="String" Name="GameSystemName" Nullable="false" MaxLength="75" />
-        </ComplexType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserKey" />
-          </Key>
-          <Property Name="UserKey" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="LastLogin" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="GamerTag" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="PSNID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="BattleNet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SteamAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OriginAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Battles" Relationship="ShackBattlesModel.FK_Battles_Users" FromRole="User" ToRole="Battle" />
-          <NavigationProperty Name="UserBattles" Relationship="ShackBattlesModel.FK_UserBattles_Users" FromRole="User" ToRole="UserBattle" />
-          <NavigationProperty Name="UserFollows" Relationship="ShackBattlesModel.FK_UserFollows_Users" FromRole="User" ToRole="UserFollow" />
-        </EntityType>
-        <Association Name="FK_Battles_Users">
-          <End Type="ShackBattlesModel.User" Role="User" Multiplicity="1" />
-          <End Type="ShackBattlesModel.Battle" Role="Battle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserKey" />
-            </Principal>
-            <Dependent Role="Battle">
-              <PropertyRef Name="CreatorKey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserBattles_Users">
-          <End Type="ShackBattlesModel.User" Role="User" Multiplicity="1" />
-          <End Type="ShackBattlesModel.UserBattle" Role="UserBattle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserKey" />
-            </Principal>
-            <Dependent Role="UserBattle">
-              <PropertyRef Name="UsersKey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserFollows_Users">
-          <End Type="ShackBattlesModel.User" Role="User" Multiplicity="1" />
-          <End Type="ShackBattlesModel.UserFollow" Role="UserFollow" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserKey" />
-            </Principal>
-            <Dependent Role="UserFollow">
-              <PropertyRef Name="UserKey" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="GetUpcomingBattlesAllUsers_Result">
-          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="BattleGUID" Nullable="false" MaxLength="50" />
-          <Property Type="Int32" Name="BattleKey" Nullable="false" />
-          <Property Type="String" Name="CreatorName" Nullable="false" MaxLength="75" />
-          <Property Type="String" Name="GameName" Nullable="false" MaxLength="75" />
-          <Property Type="String" Name="GameSystemName" Nullable="false" MaxLength="75" />
-          <Property Type="Int32" Name="GameKey" Nullable="false" />
-          <Property Type="DateTime" Name="BattleDate" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="CreatorKey" Nullable="false" />
-          <Property Type="String" Name="Details" Nullable="false" />
-          <Property Type="Int32" Name="Registered" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -517,33 +520,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShackBattlesModelStoreContainer" CdmEntityContainer="SBEntities">
-          <FunctionImportMapping FunctionImportName="GetGameUpcomingBattles" FunctionName="ShackBattlesModel.Store.GetGameUpcomingBattles">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ShackBattlesModel.GetGameUpcomingBattles_Result">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="BattleDate" ColumnName="BattleDate" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="BattleGUID" ColumnName="BattleGUID" />
-                <ScalarProperty Name="Joined" ColumnName="Joined" />
-                <ScalarProperty Name="Registered" ColumnName="Registered" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="Battles">
-            <EntityTypeMapping TypeName="ShackBattlesModel.Battle">
-              <MappingFragment StoreEntitySet="Battles">
-                <ScalarProperty Name="BattleGUID" ColumnName="BattleGUID" />
-                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CreatorKey" ColumnName="CreatorKey" />
-                <ScalarProperty Name="GameKey" ColumnName="GameKey" />
-                <ScalarProperty Name="BattleDate" ColumnName="BattleDate" />
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="BattleKey" ColumnName="BattleKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Games">
             <EntityTypeMapping TypeName="ShackBattlesModel.Game">
               <MappingFragment StoreEntitySet="Games">
@@ -596,6 +572,50 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ShackBattlesModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="OriginAccount" ColumnName="OriginAccount" />
+                <ScalarProperty Name="SteamAccount" ColumnName="SteamAccount" />
+                <ScalarProperty Name="BattleNet" ColumnName="BattleNet" />
+                <ScalarProperty Name="PSNID" ColumnName="PSNID" />
+                <ScalarProperty Name="GamerTag" ColumnName="GamerTag" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Battles">
+            <EntityTypeMapping TypeName="ShackBattlesModel.Battle">
+              <MappingFragment StoreEntitySet="Battles">
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="BattleGUID" ColumnName="BattleGUID" />
+                <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatorKey" ColumnName="CreatorKey" />
+                <ScalarProperty Name="GameKey" ColumnName="GameKey" />
+                <ScalarProperty Name="BattleDate" ColumnName="BattleDate" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BattleKey" ColumnName="BattleKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetGameUpcomingBattles" FunctionName="ShackBattlesModel.Store.GetGameUpcomingBattles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShackBattlesModel.GetGameUpcomingBattles_Result">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="BattleDate" ColumnName="BattleDate" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BattleGUID" ColumnName="BattleGUID" />
+                <ScalarProperty Name="Joined" ColumnName="Joined" />
+                <ScalarProperty Name="Registered" ColumnName="Registered" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetUpcomingBattles" FunctionName="ShackBattlesModel.Store.GetUpcomingBattles">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ShackBattlesModel.GetUpcomingBattles_Result">
@@ -610,6 +630,23 @@
                 <ScalarProperty Name="CreatorKey" ColumnName="CreatorKey" />
                 <ScalarProperty Name="Registered" ColumnName="Registered" />
                 <ScalarProperty Name="Joined" ColumnName="Joined" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUpcomingBattlesAllUsers" FunctionName="ShackBattlesModel.Store.GetUpcomingBattlesAllUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShackBattlesModel.GetUpcomingBattlesAllUsers_Result">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BattleGUID" ColumnName="BattleGUID" />
+                <ScalarProperty Name="BattleKey" ColumnName="BattleKey" />
+                <ScalarProperty Name="CreatorName" ColumnName="CreatorName" />
+                <ScalarProperty Name="GameName" ColumnName="GameName" />
+                <ScalarProperty Name="GameSystemName" ColumnName="GameSystemName" />
+                <ScalarProperty Name="GameKey" ColumnName="GameKey" />
+                <ScalarProperty Name="BattleDate" ColumnName="BattleDate" />
+                <ScalarProperty Name="CreatorKey" ColumnName="CreatorKey" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Registered" ColumnName="Registered" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -645,44 +682,12 @@
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
                 <ScalarProperty Name="BattleGUID" ColumnName="BattleGUID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Joined" ColumnName="Joined" />
                 <ScalarProperty Name="Registered" ColumnName="Registered" />
                 <ScalarProperty Name="CreatorName" ColumnName="CreatorName" />
                 <ScalarProperty Name="GameName" ColumnName="GameName" />
                 <ScalarProperty Name="GameSystemName" ColumnName="GameSystemName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="ShackBattlesModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Bio" ColumnName="Bio" />
-                <ScalarProperty Name="OriginAccount" ColumnName="OriginAccount" />
-                <ScalarProperty Name="SteamAccount" ColumnName="SteamAccount" />
-                <ScalarProperty Name="BattleNet" ColumnName="BattleNet" />
-                <ScalarProperty Name="PSNID" ColumnName="PSNID" />
-                <ScalarProperty Name="GamerTag" ColumnName="GamerTag" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetUpcomingBattlesAllUsers" FunctionName="ShackBattlesModel.Store.GetUpcomingBattlesAllUsers">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ShackBattlesModel.GetUpcomingBattlesAllUsers_Result">
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="BattleGUID" ColumnName="BattleGUID" />
-                <ScalarProperty Name="BattleKey" ColumnName="BattleKey" />
-                <ScalarProperty Name="CreatorName" ColumnName="CreatorName" />
-                <ScalarProperty Name="GameName" ColumnName="GameName" />
-                <ScalarProperty Name="GameSystemName" ColumnName="GameSystemName" />
-                <ScalarProperty Name="GameKey" ColumnName="GameKey" />
-                <ScalarProperty Name="BattleDate" ColumnName="BattleDate" />
-                <ScalarProperty Name="CreatorKey" ColumnName="CreatorKey" />
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="Registered" ColumnName="Registered" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

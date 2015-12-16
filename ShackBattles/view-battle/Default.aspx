@@ -18,12 +18,16 @@
             <img class="box-art img-rounded" src="<%=ResolveUrl("~") %>Images/boxart/<%=_boxArt %>" />
             <br />
             <br />
+            <% if (_userKey != _creatorKey){  %>
             <input type="button" data-joined="<%=_joined %>" data-id="<%=_battleGUID%>" class="btn <%=_joined == 0 ? "btn-primary" :  "btn-danger"%>" value="<%=_joined == 0 ? "Join" :  "Leave"%>" />
+            <% } %>
             <br />
             <br />
             <% if (_userKey == _creatorKey){  %>
             <a href="<%=ResolveUrl("~")%>edit-battle/<%=_battleGUID %>" class="btn btn-default">Edit Your Battle</a>
+            <br /><br />
             <% } %>
+            <asp:Button runat="server" OnClick="DeleteBattle_Click" OnClientClick="return confirm('Are you sure you want to delete your battle?')" ID="DeleteBattle" Visible="<%#_userKey == _creatorKey %>" Text="Delete Your Battle" CssClass="btn btn-danger" />
         </div>
         <div class="col-md-9">
             <h1>
