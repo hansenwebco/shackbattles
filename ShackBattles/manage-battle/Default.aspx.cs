@@ -13,13 +13,14 @@ namespace ShackBattles.manage_battle
     {
         protected string _battleGUID = string.Empty;
         protected int _userKey = 0;
+        protected int _creatorKey = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             UserSession user = Helper.GetUserSession();
             _userKey = user.userKey;
 
-            UserControlShackTags.TargetControlID = TextBoxDetails.ClientID ;
+            UserControlShackTags.TargetControlID = TextBoxDetails.ClientID;
 
             if (!IsPostBack)
             {
@@ -49,6 +50,9 @@ namespace ShackBattles.manage_battle
                         {
                             if (battleInfo.CreatorKey != user.userKey) // shoudl not be editing
                                 Response.Redirect("~/home", true);
+
+                            if (battleInfo.CreatorKey == _userKey)
+                                ButtonDelete.Visible = true;
                         }
 
                         DropDownListSystem.Items.FindByValue(battleInfo.GameSystemKey.ToString()).Selected = true;
@@ -67,10 +71,25 @@ namespace ShackBattles.manage_battle
                         TextBoxDetails.Text = battleInfo.Details;
 
                         PanelShareURL.Visible = true;
-                        TextBoxShareURL.Text = "http://" +  HttpContext.Current.Request.Url.Host + "/view-battle/" + battleInfo.BattleGUID;
+                        TextBoxShareURL.Text = "http://" + HttpContext.Current.Request.Url.Host + "/view-battle/" + battleInfo.BattleGUID;
                     }
                 }
             }
+        }
+
+        protected void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            String battleGUID = (string)Page.RouteData.Values["BattleGUID"];
+            try
+            {
+                Helper.DeleteShackBattle(battleGUID);
+                Response.Redirect("~/home", true);
+            }
+            catch (Exception)
+            {
+                // TODO: swallow this for now.
+            }
+
         }
     }
 }

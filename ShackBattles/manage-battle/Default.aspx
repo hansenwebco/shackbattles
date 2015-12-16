@@ -139,11 +139,10 @@
                 $("#button-edit").addClass('selected');
             }
         }
-     
-      
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderContent" runat="server">
+
     <div class="row">
         <div class="col-md-12">
             <div class="form-horizontal">
@@ -157,6 +156,7 @@
                     <div class="col-md-4 add-message">
                         <br />
                         Don't see a game you want?  <a href="<%=ResolveUrl("~") %>add-game/">Click here.</a>
+                        <asp:Button ID="ButtonDelete" runat="server" Visible="false" OnClick="ButtonDelete_Click" OnClientClick="return confirm('Are you sure you wish to delete this battle?');" Text="Delete Battle" CssClass="pull-right btn btn-danger" />
                     </div>
                 </div>
                 <div id="gamelist">

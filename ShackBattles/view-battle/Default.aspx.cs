@@ -55,27 +55,15 @@ namespace ShackBattles.view_battle
 
         protected void DeleteBattle_Click(object sender, EventArgs e)
         {
+            string BattleGUID = (string)Page.RouteData.Values["BattleGUID"];
             try
             {
-                string BattleGUID = (string)Page.RouteData.Values["BattleGUID"];
-                using (SBEntities db = new SBEntities())
-                {
-                    Battle b = db.Battles.Where(w => w.BattleGUID == BattleGUID).FirstOrDefault();
-                    if (b != null)
-                    {
-                        b.Deleted = true;
-                        db.SaveChanges();
-                        User u = db.Users.Where(w => w.UserKey == b.CreatorKey).FirstOrDefault();
-                        StringBuilder sb = new StringBuilder();
-                        sb.AppendLine("Your ShackBattle titled " + b.Title + " was deleted succesfully.");
-                        ShackNewsHelper.SendShackMessage(u.Username, "Your ShackBattle was Deleted", sb.ToString());
-                        Response.Redirect("~/home", true);
-                    }
-                }
+                Helper.DeleteShackBattle(BattleGUID);
+                Response.Redirect("~/home", true);
             }
             catch (Exception)
             {
-                // We are just going to swallow this for now.
+                // TODO: Swallow for now!
             }
         }
     }

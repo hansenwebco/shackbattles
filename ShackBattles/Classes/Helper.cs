@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ShackBattles.Data;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -35,7 +37,8 @@ namespace ShackBattles.Classes
         }
         public static UserSession GetUserSession()
         {
-            if (HttpContext.Current.Session["user"] == null) {
+            if (HttpContext.Current.Session["user"] == null)
+            {
                 HttpContext.Current.Response.Redirect("~/?returnUrl=" + HttpContext.Current.Request.Url.PathAndQuery, true);
             }
             UserSession us = (UserSession)HttpContext.Current.Session["user"];
@@ -84,6 +87,23 @@ namespace ShackBattles.Classes
                 return text;
             }
         }
+        public static void DeleteShackBattle(string battleGUID)
+        {
+            using (SBEntities db = new SBEntities())
+            {
+                Battle b = db.Battles.Where(w => w.BattleGUID == battleGUID).FirstOrDefault();
+                if (b != null)
+                {
+                    b.Deleted = true;
+                    db.SaveChanges();
+                    User u = db.Users.Where(w => w.UserKey == b.CreatorKey).FirstOrDefault();
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine("Your ShackBattle titled " + b.Title + " was deleted succesfully.");
+                    ShackNewsHelper.SendShackMessage(u.Username, "Your ShackBattle was Deleted", sb.ToString());
+                }
+            }
+        }
+
         public static string StartTimeToWords(DateTime startTime)
         {
             // < minute = now
@@ -93,19 +113,19 @@ namespace ShackBattles.Classes
 
             string started = string.Empty;
             TimeSpan span = DateTime.UtcNow - startTime;
-            if (span.Seconds> 0)
+            if (span.Seconds > 0)
                 started = " ago";
 
             int seconds = Math.Abs((int)span.TotalSeconds);
             int minutes = Math.Abs((int)span.TotalMinutes);
             int hours = Math.Abs((int)span.TotalHours);
             int days = Math.Abs((int)span.TotalDays);
-            int weeks = Math.Abs((int)span.TotalDays/7);
+            int weeks = Math.Abs((int)span.TotalDays / 7);
 
             if (seconds < 60)
                 return "Now!";
             else if (minutes < 60)
-                return minutes.ToString() + "m " + started ;
+                return minutes.ToString() + "m " + started;
             else if (hours < 24)
                 return hours.ToString() + "h " + (minutes - hours * 60) + " m " + started;
             else if (hours > 24 && weeks < 1)
