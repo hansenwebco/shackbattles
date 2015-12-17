@@ -110,6 +110,7 @@
     <Content Include="calendar\Default.aspx" />
     <Content Include="CSS\login.css" />
     <Content Include="CSS\main.css" />
+    <Content Include="Data\Schema.sql" />
     <Content Include="Default.aspx" />
     <Content Include="external\ShackBattlesPost.aspx" />
     <Content Include="favicon.ico" />
