@@ -208,7 +208,7 @@
                         </div>
                     </asp:Panel>
                     <div class="form-group">
-                        <a id="ButtonSave" class="btn btn-success pull-right">Create Battle</a>
+                        <a id="ButtonSave" class="btn btn-primary pull-right">Create Battle</a>
                     </div>
                 </div>
             </div>
