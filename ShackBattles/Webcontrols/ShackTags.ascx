@@ -6,7 +6,7 @@
 <div data-open="r{" data-close="}r" class="shack-red tag">red</div>
 <div data-open="g{" data-close="}g" class="shack-green tag">green</div>
 <div data-open="b{" data-close="}b" class="shack-blue tag">blue</div>
-<div data-open="y{" data-close="}y" class="shack-yellow tag">yelow</div>
+<div data-open="y{" data-close="}y" class="shack-yellow tag">yellow</div>
 <div data-open="e[" data-close="]e" class="shack-olive tag">olive</div>
 <div data-open="l[" data-close="]l" class="shack-lime tag">lime</div>
 <div data-open="n[" data-close="]n" class="shack-orange tag">orange</div>
