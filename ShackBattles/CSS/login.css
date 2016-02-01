@@ -1,6 +1,4 @@
-﻿/* CSS used here will be applied after bootstrap.css */
-
-html {
+﻿html {
     height: 100%;
     min-height: 100%;
 }
@@ -29,12 +27,12 @@ body {
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 50px white inset; /* Change the color to your own background color */
+    -webkit-box-shadow: 0 0 0 50px white inset; 
     -webkit-text-fill-color: #333;
 }
 
     input:-webkit-autofill:focus {
-        -webkit-box-shadow: /*your box-shadow*/,0 0 0 50px white inset;
+        -webkit-box-shadow: 0 0 0 50px white inset;
         -webkit-text-fill-color: #333;
     }
 
