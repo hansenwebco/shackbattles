@@ -80,6 +80,7 @@
           <Property Name="BattleNet" Type="varchar" MaxLength="50" />
           <Property Name="SteamAccount" Type="varchar" MaxLength="50" />
           <Property Name="OriginAccount" Type="varchar" MaxLength="50" />
+          <Property Name="NintendoAccount" Type="varchar" MaxLength="50" />
           <Property Name="Bio" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_Battles_Games">
@@ -262,14 +263,14 @@
             <Parameter Name="UserKey" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUpcomingBattles" ReturnType="Collection(ShackBattlesModel.GetUpcomingBattles_Result)">
-            <Parameter Name="UserKey" Mode="In" Type="Int32" />
+          <Parameter Name="UserKey" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUpcomingBattlesAllUsers" ReturnType="Collection(ShackBattlesModel.GetUpcomingBattlesAllUsers_Result)" />
           <FunctionImport Name="GetUpcomingUserBattles" ReturnType="Collection(ShackBattlesModel.GetUpcomingUserBattles_Result)">
-            <Parameter Name="UserKey" Mode="In" Type="Int32" />
+          <Parameter Name="UserKey" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetUserUpcomingFollowedBattles" ReturnType="Collection(ShackBattlesModel.GetUserUpcomingFollowedBattles_Result)">
-            <Parameter Name="UserKey" Mode="In" Type="Int32" />
+          <Parameter Name="UserKey" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Game">
@@ -368,6 +369,7 @@
           <NavigationProperty Name="UserBattles" Relationship="ShackBattlesModel.FK_UserBattles_Users" FromRole="User" ToRole="UserBattle" />
           <NavigationProperty Name="UserFollows" Relationship="ShackBattlesModel.FK_UserFollows_Users" FromRole="User" ToRole="UserFollow" />
           <NavigationProperty Name="Battles" Relationship="ShackBattlesModel.FK_Battles_Users" FromRole="User" ToRole="Battle" />
+          <Property Name="NintendoAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_UserBattles_Users">
           <End Type="ShackBattlesModel.User" Role="User" Multiplicity="1" />
@@ -575,6 +577,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ShackBattlesModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="NintendoAccount" ColumnName="NintendoAccount" />
                 <ScalarProperty Name="Bio" ColumnName="Bio" />
                 <ScalarProperty Name="OriginAccount" ColumnName="OriginAccount" />
                 <ScalarProperty Name="SteamAccount" ColumnName="SteamAccount" />

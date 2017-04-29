@@ -23,6 +23,7 @@ namespace ShackBattles.account
 
                     TextBoxGamerTag.Text = u.GamerTag;
                     TextBoxPSN.Text = u.PSNID;
+                    TextBoxNintendo.Text = u.NintendoAccount;
                     TextBoxBattleNet.Text = u.BattleNet;
                     TextBoxSteam.Text = u.SteamAccount;
                     TextBoxOrigin.Text = u.OriginAccount;
@@ -48,6 +49,7 @@ namespace ShackBattles.account
 
                 u.GamerTag = TextBoxGamerTag.Text.Trim();
                 u.PSNID = TextBoxPSN.Text.Trim();
+                u.NintendoAccount = TextBoxNintendo.Text.Trim();
                 u.BattleNet = TextBoxBattleNet.Text.Trim();
                 u.SteamAccount = TextBoxSteam.Text.Trim();
                 u.OriginAccount = TextBoxOrigin.Text.Trim();

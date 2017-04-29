@@ -31,6 +31,15 @@ namespace ShackBattles.account {
         protected global::System.Web.UI.WebControls.TextBox TextBoxPSN;
         
         /// <summary>
+        /// TextBoxNintendo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxNintendo;
+        
+        /// <summary>
         /// TextBoxBattleNet control.
         /// </summary>
         /// <remarks>

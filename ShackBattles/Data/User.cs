@@ -32,6 +32,7 @@ namespace ShackBattles.Data
         public string SteamAccount { get; set; }
         public string OriginAccount { get; set; }
         public string Bio { get; set; }
+        public string NintendoAccount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBattle> UserBattles { get; set; }

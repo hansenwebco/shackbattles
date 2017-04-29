@@ -23,6 +23,7 @@ namespace ShackBattles.players
                 LiteralMemberSince.Text = u.DateCreated.ToShortDateString();
                 LiteralGamerTag.Text = u.GamerTag;
                 LiteralPSNID.Text = u.PSNID;
+                LiteralNintendoID.Text = u.NintendoAccount;
                 LiteralBattleNet.Text = u.BattleNet;
                 LiteralSteam.Text = u.SteamAccount;
                 LiteralOrigin.Text = u.OriginAccount;
