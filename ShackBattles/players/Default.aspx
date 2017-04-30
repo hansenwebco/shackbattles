@@ -36,6 +36,10 @@
             <td><asp:Literal ID="LiteralPSNID" runat="server"></asp:Literal></td>
         </tr>
         <tr>
+            <td>Nintendo Switch ID:</td>
+            <td><asp:Literal ID="LiteralNintendoID" runat="server"></asp:Literal></td>
+        </tr>
+        <tr>
             <td>Battle.net:</td>
             <td><asp:Literal ID="LiteralBattleNet" runat="server"></asp:Literal></td>
         </tr>

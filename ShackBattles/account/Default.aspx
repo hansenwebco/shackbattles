@@ -42,6 +42,10 @@
             <asp:TextBox ID="TextBoxPSN" runat="server" CssClass="form-control input-sm"></asp:TextBox>
         </div>
         <div class="form-group">
+            <label for="<%=TextBoxNintendo.ClientID %>">Nintendo Switch ID:</label>
+            <asp:TextBox ID="TextBoxNintendo" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+        </div>
+        <div class="form-group">
             <label for="<%=TextBoxBattleNet.ClientID %>">Battle.net ID:</label>
             <asp:TextBox ID="TextBoxBattleNet" runat="server" CssClass="form-control input-sm"></asp:TextBox>
         </div>

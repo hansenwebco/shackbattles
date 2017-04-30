@@ -235,3 +235,4 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
+/ShackBattles/Data/SBModel.edmx.sql
