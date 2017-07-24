@@ -7,7 +7,7 @@
 }
 
 var backgrounds = new Array();
-backgrounds[1] = new background("back1.jpg", "Battlefield 1942", "Dice", "1982");
+backgrounds[1] = new background("back1.jpg", "Battlefield 1942", "Dice", "2002");
 backgrounds[2] = new background("back2.jpg", "Unreal Tournament 3", "Epic Games", "2007");
 backgrounds[3] = new background("back3.jpg", "Quake III Arena", "id Software", "1999");
 backgrounds[4] = new background("back4.jpg", "Team Fortress 2", "Valve Corporation", "2007");
@@ -23,3 +23,5 @@ backgrounds[13] = new background("back13.jpg", "Counterstrike: Source", "Valve C
 backgrounds[14] = new background("back14.jpg", "Left 4 Dead 2", "Valve Corporation", "2009");
 backgrounds[15] = new background("back15.jpg", "Diablo III", "Blizzard Entertainment", "2012");
 backgrounds[16] = new background("back16.jpg", "World of Warcraft: Wrath of the Lich King", "Blizzard Entertainment", "2008");
+backgrounds[17] = new background("back18.jpg", "PlayerUnknown's Battlegrounds", "Bluehole", "2017");
+backgrounds[18] = new background("back19.jpg", "Paladins", "Hi-Rez Studios", "2016");
